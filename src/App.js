@@ -7,7 +7,7 @@ class App extends Component {
   state = {///......create the state you want to pass around the app here, the variable
 
       task: "",
-      timeDate: "",
+      // timeDate: "",
       list: [],
       templist:[],
     
@@ -20,10 +20,10 @@ handleInput = (event) => {//......function created to update the state
       this.setState({ task: event.target.value });//......target te sate you want to update, value bring the data entered, eg name of task
 
   }
-  handleInput2 = (event) => {//.....need to double check were this timedate was removed from
+  // handleInput2 = (event) => {//.....need to double check were this timedate was removed from
 
-      this.setState({ timeDate: event.target.value });
-  }
+  //     this.setState({ timeDate: event.target.value });
+  // }
 
 
 
@@ -31,9 +31,11 @@ handleInput = (event) => {//......function created to update the state
     event.preventDefault();
     this.setState({
       list: [...this.state.list, this.state.task,],/////it was removed from here 
-      task: "", timeDate: "",
+      task: "", 
     });
   };
+
+  // timeDate: "",
 
   deleteTask = (index) => {
     console.log("deleting a task " + index);
@@ -55,45 +57,49 @@ handleInput = (event) => {//......function created to update the state
     
     return (
 
-
-      <div className="container">
-        <h1>TASK {this.state.task}</h1>
-        <h1>TIME/DATE/REMINDER  {this.state.timeDate}</h1>
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            <label> Task: </label>
-            <input
+     <div className="container1">
+        <div className="container2">
+        <h1 className="todolist"  >TO DO LIST {this.state.task}</h1>
+        {/* <h1>TIME/DATE/REMINDER  {this.state.timeDate}</h1> */}
+        <form className="submit" onSubmit={this.handleSubmit}>
+          <div className="submit2" >
+            <h2 className="submittext">WHATS TO DO</h2>
+            <label className="task"></label>
+            <input className="submitP"
               onChange={this.handleInput}
               type="text"
               value={this.state.task}
             />
           </div>
           <div>
-            <label> TimeDateReminder: </label>
+            {/* <label> TimeDateReminder: </label>
             <input
               onChange={this.handleInput2}
               type="text"
               value={this.state.timeDate}
 
-            />
+            /> */}
           </div>
 
 
-          <button type="submit" >ADD TASK</button>
+          <button className="submitB" type="submit" >ADD TASK</button>
 
 
 
-          
+
         </form>
-        <div>
-          {this.state.list.map((item, i ) => {
+        <div  >
+          {this.state.list.map((item, i) => {
             return (
-            <li>{item} <button onClick={  () => this.deleteTask(i) }   >DELETE</button> </li>
+              <ul>
+              <li className="thelist" >{item} <button onClick={() => this.deleteTask(i)}   >DELETE</button> </li>
+              </ul>
             )///.............apply the delete function and state to button with onclick, attach button within list
           })}
         </div>
 
       </div>
+    </div> 
     )
   }
 
